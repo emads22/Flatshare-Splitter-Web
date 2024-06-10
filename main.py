@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 # Register the class-based view with a URL
 app.add_url_rule('/', view_func=HomePage.as_view('home_page'))
-app.add_url_rule('/bill', view_func=BillFormPage.as_view('bill_form_page'))
+app.add_url_rule('/bill_form', view_func=BillFormPage.as_view('bill_form_page'))
 app.add_url_rule('/result', view_func=ResultPage.as_view('result_page'))
 
 if __name__ == "__main__":
