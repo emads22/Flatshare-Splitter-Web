@@ -1,5 +1,6 @@
 filestack-python==3.5.0
 Flask==3.0.3
+Flask-WTF==1.2.1
 fpdf==1.7.2
 python-dotenv==1.0.1
 WTForms==3.1.2

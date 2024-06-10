@@ -20,6 +20,7 @@
         {% endif %}
     {% endwith %}
 
+    <!-- <form action="{ { url_for('bill_form_page') } }" method="post"> --> <!-- result in Same page -->
     <form action="{{ url_for('result_page') }}" method="post">
 
         <label for="amount">Amount:</label>
@@ -67,5 +68,22 @@
         <br>
         <input type="submit" value="Calculate">
     </form>
+
+    <!-- { % if result % }
+        <br><br><hr><br>
+        <div class="content">
+            <h2 class="title">
+                <img src="{{ url_for('static', filename='images/house.png') }}" alt="House Logo" class="logo">
+                Flatmates Bill
+            </h2>
+            
+            <br>
+            <p><strong>Period:&nbsp;&nbsp;</strong>{{ bill.period }}</p>
+            <p><strong>Total Amount:&nbsp;&nbsp;</strong>${{ bill.amount }}</p>
+            <br>
+            <p>- {{ name1 }}:&nbsp;&nbsp;${{ amount1 }}</p>
+            <p>- {{ name2 }}:&nbsp;&nbsp;${{ amount2 }}</p>
+        </div>
+    { % endif % } -->
 
 {% endblock %}
