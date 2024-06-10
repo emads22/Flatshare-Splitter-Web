@@ -6,9 +6,13 @@
     <title>Result</title>
 </head>
 <body>
-    <h1>Result</h1>
-
-    <p>X: {{x}}</p>
-    <p>Y: {{y}}</p>
+    <img src="/static/images/house.png" width=30 alt="house_logo">
+    <h2>Flatmates Bill</h2>
+    <br>
+    <p><strong>Period:&nbsp;&nbsp;</strong>{{ bill.period }}</p>
+    <p><strong>Total Amount:&nbsp;&nbsp;</strong>${{ bill.amount }}</p>
+    <br>
+    <p>- {{ name1 }}:&nbsp;&nbsp;${{ amount1 }}</p>
+    <p>- {{ name2 }}:&nbsp;&nbsp;${{ amount2 }}</p>
 </body>
 </html>
