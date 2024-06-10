@@ -1,18 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Result</title>
-</head>
-<body>
-    <img src="/static/images/house.png" width=30 alt="house_logo">
-    <h2>Flatmates Bill</h2>
-    <br>
-    <p><strong>Period:&nbsp;&nbsp;</strong>{{ bill.period }}</p>
-    <p><strong>Total Amount:&nbsp;&nbsp;</strong>${{ bill.amount }}</p>
-    <br>
-    <p>- {{ name1 }}:&nbsp;&nbsp;${{ amount1 }}</p>
-    <p>- {{ name2 }}:&nbsp;&nbsp;${{ amount2 }}</p>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block title %}
+    {{ super() }} - Result
+{% endblock %}
+
+{% block content %}
+
+    <div class="content">
+        <h2 class="title">
+            <img src="{{ url_for('static', filename='images/house.png') }}" alt="House Logo" class="logo">
+            Flatmates Bill
+        </h2>
+        
+        <br>
+        <p><strong>Period:&nbsp;&nbsp;</strong>{{ bill.period }}</p>
+        <p><strong>Total Amount:&nbsp;&nbsp;</strong>${{ bill.amount }}</p>
+        <br>
+        <p>- {{ name1 }}:&nbsp;&nbsp;${{ amount1 }}</p>
+        <p>- {{ name2 }}:&nbsp;&nbsp;${{ amount2 }}</p>
+    </div>
+
+{% endblock %}

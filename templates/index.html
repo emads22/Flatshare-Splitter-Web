@@ -1,13 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-</head>
-<body>
-    <h2>Flatmates' Bill</h2>
+{% extends 'base.html' %}
+
+{% block title %}
+    {{ super() }} - Home
+{% endblock %}
+
+{% block content %}
+
+    <h2>
+        Flatmates Bill
+    </h2>
     <p>This web app is useful to split a bill between two flatmates. </p>
+    <br>
     <a href="{{ url_for('bill_form_page') }}">Go to the bill page.</a>
-</body>
-</html>
+        
+{% endblock %}

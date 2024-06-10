@@ -2,6 +2,7 @@ from flask import Flask
 from app_views import HomePage, BillFormPage, ResultPage, BillForm
 
 app = Flask(__name__)
+app.secret_key = 'supersecretkey'  # Required for flashing messages
 
 # Register the class-based view with a URL
 app.add_url_rule('/', view_func=HomePage.as_view('home_page'))

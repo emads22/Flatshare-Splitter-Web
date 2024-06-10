@@ -1,31 +1,71 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bill Form</title>
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% block title %}
+    {{ super() }} - Bill Form
+{% endblock %}
+
+{% block content %}   
+
     <h2>The Bill Form</h2>
 
     <p>Fill in the form and click the button to get the results</p>
 
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class="flash">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
     <form action="{{ url_for('result_page') }}" method="post">
-        {{ billform.amount.label }} {{ billform.amount }}
+
+        <label for="amount">Amount:</label>
+        {{ billform.amount }}
+        {% for error in billform.amount.errors %}
+            <span class="error">{{ error }}</span>
+        {% endfor %}
+
+        <label for="period">Period:</label>
+        {{ billform.period }}
+        {% for error in billform.period.errors %}
+            <span class="error">{{ error }}</span>
+        {% endfor %}
+
+        <br><hr><br>
+
+        <h3>First Flatmate</h3>
+        <label for="name1">Name:</label>
+        {{ billform.name1 }}
+        {% for error in billform.name1.errors %}
+            <span class="error">{{ error }}</span>
+        {% endfor %}
+
+        <label for="days_in_house1">Days in House:</label>
+        {{ billform.days_in_house1 }}
+        {% for error in billform.days_in_house1.errors %}
+            <span class="error">{{ error }}</span>
+        {% endfor %}
+
+        <br><hr><br>
+
+        <h3>Second Flatmate</h3>
+        <label for="name2">Name:</label>
+        {{ billform.name2 }}
+        {% for error in billform.name2.errors %}
+            <span class="error">{{ error }}</span>
+        {% endfor %}
+
+        <label for="days_in_house2">Days in House:</label>
+        {{ billform.days_in_house2 }}
+        {% for error in billform.days_in_house2.errors %}
+            <span class="error">{{ error }}</span>
+        {% endfor %}
+
         <br>
-        {{ billform.period.label }} {{ billform.period }}
-        <hr>
-        <p>First Flatmate</p>
-        {{ billform.name1.label }} {{ billform.name1 }}
-        <br>
-        {{ billform.days_in_house1.label }} {{ billform.days_in_house1 }}
-        <hr>
-        <p>Second Flatmate</p>
-        {{ billform.name2.label }} {{ billform.name2 }}
-        <br>
-        {{ billform.days_in_house2.label }} {{ billform.days_in_house2 }}
-        <br>
-        {{ billform.button }}
+        <input type="submit" value="Calculate">
     </form>
-</body>
-</html>
+
+{% endblock %}
