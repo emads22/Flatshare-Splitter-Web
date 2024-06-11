@@ -2,26 +2,33 @@ from flask import render_template, request, redirect, url_for, flash
 from flask.views import MethodView
 from app_forms import BillForm
 from flatshare_splitter import classes as fs_classes
+from flatshare_splitter import constants as fs_constants
 from app_utils import generate_and_upload_PDF_bill
 
 
 class IndexView(MethodView):
     """
-    View class for the home page.
+    View class for handling the home page.
+
+    This class provides methods to handle HTTP GET and POST requests for the
+    home page of the application.
 
     Methods:
-        get(): Handles GET requests and renders the home page template.
-        post(): Handles POST requests. Currently not implemented.
+        get(): Renders and returns the home page template for GET requests.
+        post(): Placeholder for handling POST requests. Not yet implemented.
     """
 
     def get(self):
         """
         Handle GET requests and render the home page template.
 
+        This method processes GET requests by rendering the 'index.html' template
+        and including the application's logo as ASCII art.
+
         Returns:
-            A rendered template for the home page.
+            Response: A Flask Response object containing the rendered home page template.
         """
-        return render_template('index.html')
+        return render_template('index.html', app_logo=fs_constants.ASCII_ART)
 
 
 class BillFormView(MethodView):
