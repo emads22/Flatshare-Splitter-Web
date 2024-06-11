@@ -1,5 +1,14 @@
 # Flatshare Splitter Web 
 
+```bash
+███████╗██╗      █████╗ ████████╗███████╗██╗  ██╗ █████╗ ██████╗ ███████╗    ███████╗██████╗ ██╗     ██╗████████╗████████╗███████╗██████╗ 
+██╔════╝██║     ██╔══██╗╚══██╔══╝██╔════╝██║  ██║██╔══██╗██╔══██╗██╔════╝    ██╔════╝██╔══██╗██║     ██║╚══██╔══╝╚══██╔══╝██╔════╝██╔══██╗
+█████╗  ██║     ███████║   ██║   ███████╗███████║███████║██████╔╝█████╗      ███████╗██████╔╝██║     ██║   ██║      ██║   █████╗  ██████╔╝
+██╔══╝  ██║     ██╔══██║   ██║   ╚════██║██╔══██║██╔══██║██╔══██╗██╔══╝      ╚════██║██╔═══╝ ██║     ██║   ██║      ██║   ██╔══╝  ██╔══██╗
+██║     ███████╗██║  ██║   ██║   ███████║██║  ██║██║  ██║██║  ██║███████╗    ███████║██║     ███████╗██║   ██║      ██║   ███████╗██║  ██║
+╚═╝     ╚══════╝╚═╝  ╚═╝   ╚═╝   ╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝    ╚══════╝╚═╝     ╚══════╝╚═╝   ╚═╝      ╚═╝   ╚══════╝╚═╝  ╚═╝
+```
+
 ## Overview
 Flatshare Splitter Web, initially a Python CLI (Command-Line Interface) application, has been upgraded to a web application using Flask. The web application continues to fairly split the utility bill among flatmates based on the number of days they stayed in the house during the billing period. The application leverages Object-Oriented Programming (OOP) principles to enhance modularity and maintainability, and now offers a user-friendly web interface for a better user experience.
 
