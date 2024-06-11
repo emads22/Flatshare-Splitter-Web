@@ -1,5 +1,5 @@
 from datetime import datetime
-from flatmates_bill import classes as fb_classes
+from flatshare_splitter import classes as fs_classes
 
 
 def generate_and_upload_PDF_bill(flatmate1, flatmate2, the_bill):
@@ -18,18 +18,19 @@ def generate_and_upload_PDF_bill(flatmate1, flatmate2, the_bill):
     """
     try:
         # Generate the PDF report (bill)
-        pdf_bill = fb_classes.PdfReport(flatmate1, flatmate2, the_bill)
+        pdf_bill = fs_classes.PdfReport(flatmate1, flatmate2, the_bill)
         pdf_bill_path = pdf_bill.generate()
 
         # Share the PDF bill by uploading it to Filestack and get its URL
-        bill_url = fb_classes.FileShare(filepath=pdf_bill_path).share()
+        bill_url = fs_classes.FileShare(filepath=pdf_bill_path).share()
 
         return bill_url, None
 
     except Exception as e:
         # Log the error and return a meaningful message
         error_message = f"An error occurred during PDF bill generation or file upload"
-        print(f'\n\n--- {error_message}: {e} ---\n\n')  # Use logging in production
+        # Use logging in production
+        print(f'\n\n--- {error_message}: {e} ---\n\n')
         return None, error_message
 
 

@@ -1,7 +1,7 @@
 from flask import render_template, request, redirect, url_for, flash
 from flask.views import MethodView
 from app_forms import BillForm
-from flatmates_bill import classes as fb_classes
+from flatshare_splitter import classes as fs_classes
 from app_utils import generate_and_upload_PDF_bill
 
 
@@ -70,10 +70,10 @@ class BillFormView(MethodView):
             days2 = int(bill_form.days_in_house2.data)
 
             # Create Bill and Flatmate instances
-            the_bill = fb_classes.Bill(amount=bill_amount, period=bill_period)
-            flatmate1 = fb_classes.Flatmate(
+            the_bill = fs_classes.Bill(amount=bill_amount, period=bill_period)
+            flatmate1 = fs_classes.Flatmate(
                 name=name1, days_in_house=days1)
-            flatmate2 = fb_classes.Flatmate(
+            flatmate2 = fs_classes.Flatmate(
                 name=name2, days_in_house=days2)
 
             # Calculate bill shares for each flatmate
@@ -83,10 +83,10 @@ class BillFormView(MethodView):
             # Generate the PDF report (bill) and Share it by uploading it to filestack and get its url
             bill_url, error = generate_and_upload_PDF_bill(
                 flatmate1, flatmate2, the_bill)
-            
+
             if bill_url is None:
                 flash(error, 'danger')
-            
+
             # Render the result template with calculated bill details
             return render_template(
                 'result.html',
