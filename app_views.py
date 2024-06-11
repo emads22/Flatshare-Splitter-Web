@@ -63,9 +63,14 @@ class BillFormView(MethodView):
         if not bill_form.validate_on_submit():
             for field, errors in bill_form.errors.items():
                 for error in errors:
-                    field_label = getattr(bill_form, field).label.text
+                    field_obj = getattr(bill_form, field, None)
+                    if field_obj is not None and hasattr(field_obj, 'label') and hasattr(field_obj.label, 'text'):
+                        field_label = field_obj.label.text
+                    else:
+                        field_label = field
                     flash(f"Error in '{field_label}': {error}", 'danger')
-            return render_template('bill_form.html', billform=bill_form)
+            # returns a 400 status code (Bad Request) to indicate that the client's request was incorrect and could not be processed.
+            return render_template('bill_form.html', billform=bill_form), 400
 
         try:
             # Extract data from the form
@@ -94,7 +99,7 @@ class BillFormView(MethodView):
             if bill_url is None:
                 flash(error, 'danger')
 
-            # Render the result template with calculated bill details
+            # Render the result template with calculated bill details, returns a 200 status code (OK) to indicate that the request was successful and the resource (in this case, the redirected page) is being returned.
             return render_template(
                 'result.html',
                 bill=the_bill,
@@ -102,8 +107,7 @@ class BillFormView(MethodView):
                 amount1=amount1,
                 name2=name2,
                 amount2=amount2,
-                bill_url=bill_url
-            )
+                bill_url=bill_url), 200
 
             # # Render the result template with calculated bill details to the same bill_form_view
             # return render_template(
@@ -119,5 +123,5 @@ class BillFormView(MethodView):
 
         except Exception as e:
             flash(f"An error occurred while processing the form: {e}")
-            # Redirect to the form page if there's an error
-            return redirect(url_for('bill_form_view'))
+            # Redirect to the form page if there's an error, return a 500 status code (Internal Server Error) to indicate that an unexpected error occurred on the server.
+            return redirect(url_for('bill_form_view')), 500
