@@ -26,9 +26,10 @@ def extra_validation(bill_form):
 
     # Validate bill period
     try:
-        bill_period = datetime.strptime(bill_form.period.data.title(), "%B %Y")
+        bill_period = bill_form.period.data.title()
+        bill_period_date = datetime.strptime(bill_period, "%B %Y")
         current_date = datetime.now()
-        if bill_period > current_date:
+        if bill_period_date > current_date:
             error_message.append("-- 'Bill Period' cannot be in the future.")
     except (ValueError, TypeError):
         error_message.append(
@@ -41,10 +42,10 @@ def extra_validation(bill_form):
         error_message.append("-- Name field is required.")
     if not name1.strip().isalpha():
         error_message.append(
-            "-- 'First Flatmate Name' must contain only alphabetic characters.")
+            "-- 'Flatmate A Name' must contain only alphabetic characters.")
     if not name2.strip().isalpha():
         error_message.append(
-            "-- 'Second Flatmate Name' must contain only alphabetic characters.")
+            "-- 'Flatmate B Name' must contain only alphabetic characters.")
 
     # Validate days in house
     try:
@@ -61,7 +62,7 @@ def extra_validation(bill_form):
 
     data = {
         'bill_amount': bill_amount,
-        'bill_period': bill_period.strftime("%B %Y"),
+        'bill_period': bill_period,
         'name1': name1,
         'name2': name2,
         'days1': days1,

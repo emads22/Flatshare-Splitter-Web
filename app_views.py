@@ -2,10 +2,9 @@ from flask import render_template, request, redirect, url_for, flash
 from flask.views import MethodView
 from app_forms import BillForm
 from flatmates_bill import classes as fb_classes
-from app_utils import extra_validation
 
 
-class HomePage(MethodView):
+class IndexView(MethodView):
     """
     View class for the home page.
 
@@ -23,14 +22,8 @@ class HomePage(MethodView):
         """
         return render_template('index.html')
 
-    def post(self):
-        """
-        Handle POST requests. Currently not implemented.
-        """
-        pass
 
-
-class BillFormPage(MethodView):
+class BillFormView(MethodView):
     """
     View class for the bill form page.
 
@@ -59,98 +52,28 @@ class BillFormPage(MethodView):
         bill_form = BillForm(request.form)
 
         # Server-Side Validation: Perform server-side form validation
-        if not bill_form.validate():
-            flash('Please correct the errors in the form and try again.')
-            # Pass the form object back to the form page for correction
-            return render_template('bill_form.html', billform=bill_form)
-
-        # If the form passed standard validation, perform custom validation
-        extra_validated_data, error_message = extra_validation(bill_form)
-        if extra_validated_data is None:
-            flash(error_message)
-            # Pass the form object back to the form page for correction
+        if not bill_form.validate_on_submit():
+            for field, errors in bill_form.errors.items():
+                for error in errors:
+                    field_label = getattr(bill_form, field).label.text
+                    flash(f"Error in '{field_label}': {error}", 'danger')
             return render_template('bill_form.html', billform=bill_form)
 
         try:
             # Extract data from the form
-            bill_amount = extra_validated_data['bill_amount']
-            bill_period = extra_validated_data['bill_period']
-            name1 = extra_validated_data['name1']
-            name2 = extra_validated_data['name2']
+            bill_amount = float(bill_form.amount.data)
+            bill_period = bill_form.period.data.title()
+            name1 = bill_form.name1.data.title()
+            days1 = int(bill_form.days_in_house1.data)
+            name2 = bill_form.name2.data.title()
+            days2 = int(bill_form.days_in_house2.data)
 
             # Create Bill and Flatmate instances
             the_bill = fb_classes.Bill(amount=bill_amount, period=bill_period)
             flatmate1 = fb_classes.Flatmate(
-                name=name1, days_in_house=extra_validated_data['days1'])
+                name=name1, days_in_house=days1)
             flatmate2 = fb_classes.Flatmate(
-                name=name2, days_in_house=extra_validated_data['days2'])
-
-            # Calculate bill shares for each flatmate
-            amount1 = flatmate1.pays(bill=the_bill, flatmate=flatmate2)
-            amount2 = flatmate2.pays(bill=the_bill, flatmate=flatmate1)
-
-            # Render the result template with calculated bill details
-            return render_template(
-                'bill_form.html',
-                billform=BillForm(),
-                result=True,
-                bill=the_bill,
-                name1=name1,
-                amount1=amount1,
-                name2=name2,
-                amount2=amount2
-            )
-
-        except ValueError as e:
-            flash(f"An error occurred while processing the form: {e}")
-            # Redirect to the form page if there's an error
-            return redirect(url_for('bill_form_page'))
-
-
-class ResultPage(MethodView):
-    """
-    View class for the result page.
-
-    Methods:
-        post(): Handles POST requests by processing form data, performing validation,
-                and rendering the result template.
-    """
-
-    def post(self):
-        """
-        Handle POST requests by processing form data, performing validation, and rendering the result template.
-
-        Returns:
-            Rendered template for the result page with calculated bill details.
-        """
-        bill_form = BillForm(request.form)
-
-        # Server-Side Validation: Perform server-side form validation
-        if not bill_form.validate():
-            flash('Please correct the errors in the form and try again.')
-            # Pass the form object back to the form page for correction
-            return render_template('bill_form.html', billform=bill_form)
-
-        # If the form passed standard validation, perform custom validation
-        extra_validated_data, error_message = extra_validation(bill_form)
-        if extra_validated_data is None:
-            flash(error_message)
-            # Pass the form object back to the form page for correction
-            return render_template('bill_form.html', billform=bill_form)
-
-        try:
-            # Extract data from the form
-            bill_amount = extra_validated_data['bill_amount']
-            bill_period = extra_validated_data['bill_period']
-            name1 = extra_validated_data['name1']
-            name2 = extra_validated_data['name2']
-
-            # Create Bill and Flatmate instances
-            the_bill = fb_classes.Bill(amount=bill_amount, period=bill_period)
-            flatmate1 = fb_classes.Flatmate(
-                name=name1, days_in_house=extra_validated_data['days1'])
-            flatmate2 = fb_classes.Flatmate(
-                name=name2, days_in_house=extra_validated_data['days2'])
+                name=name2, days_in_house=days2)
 
             # Calculate bill shares for each flatmate
             amount1 = flatmate1.pays(bill=the_bill, flatmate=flatmate2)
@@ -166,7 +89,19 @@ class ResultPage(MethodView):
                 amount2=amount2
             )
 
-        except ValueError as e:
+            # # Render the result template with calculated bill details to the same bill_form_view
+            # return render_template(
+            #     'bill_form.html',
+            #     billform=BillForm(),
+            #     result=True,
+            #     bill=the_bill,
+            #     name1=name1,
+            #     amount1=amount1,
+            #     name2=name2,
+            #     amount2=amount2
+            # )
+
+        except Exception as e:
             flash(f"An error occurred while processing the form: {e}")
             # Redirect to the form page if there's an error
-            return redirect(url_for('bill_form_page'))
+            return redirect(url_for('bill_form_view'))

@@ -10,79 +10,52 @@
 
     <p>Fill in the form and click the button to get the results</p>
 
-    {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            <ul class="flash">
-                {% for message in messages %}
-                    <li>{{ message }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
-    {% endwith %}
+    <form action="{{ url_for('bill_form_view') }}" method="post">
 
-    <!-- <form action="{ { url_for('bill_form_page') } }" method="post"> --> <!-- result in Same page -->
-    <form action="{{ url_for('result_page') }}" method="post">
+        {{ billform.hidden_tag() }}  <!-- This includes the CSRF token -->
 
-        <label for="amount">Amount:</label>
-        {{ billform.amount }}
-        {% for error in billform.amount.errors %}
-            <span class="error">{{ error }}</span>
-        {% endfor %}
-
-        <label for="period">Period:</label>
-        {{ billform.period }}
-        {% for error in billform.period.errors %}
-            <span class="error">{{ error }}</span>
-        {% endfor %}
-
+        <div>
+            {{ billform.amount.label }} {{ billform.amount(size=20) }}
+        </div>
+        <div>
+            {{ billform.period.label }} {{ billform.period(size=20) }}
+        </div>
+        <br><hr><br>        
+        <div>
+            {{ billform.name1.label }} {{ billform.name1(size=20) }}
+        </div>
+        <div>
+            {{ billform.days_in_house1.label }} {{ billform.days_in_house1(size=20) }}
+        </div>
         <br><hr><br>
-
-        <h3>First Flatmate</h3>
-        <label for="name1">Name:</label>
-        {{ billform.name1 }}
-        {% for error in billform.name1.errors %}
-            <span class="error">{{ error }}</span>
-        {% endfor %}
-
-        <label for="days_in_house1">Days in House:</label>
-        {{ billform.days_in_house1 }}
-        {% for error in billform.days_in_house1.errors %}
-            <span class="error">{{ error }}</span>
-        {% endfor %}
-
-        <br><hr><br>
-
-        <h3>Second Flatmate</h3>
-        <label for="name2">Name:</label>
-        {{ billform.name2 }}
-        {% for error in billform.name2.errors %}
-            <span class="error">{{ error }}</span>
-        {% endfor %}
-
-        <label for="days_in_house2">Days in House:</label>
-        {{ billform.days_in_house2 }}
-        {% for error in billform.days_in_house2.errors %}
-            <span class="error">{{ error }}</span>
-        {% endfor %}
-
+        <div>
+            {{ billform.name2.label }} {{ billform.name2(size=20) }}
+        </div>
+        <div>
+            {{ billform.days_in_house2.label }} {{ billform.days_in_house2(size=20) }}
+        </div>
         <br>
-        <input type="submit" value="Calculate">
+        <div>
+            {{ billform.submit() }}
+        </div>
+
     </form>
 
-    <!-- { % if result % }
+    <!-- when result in Same page -->
+    <!-- { % if result % } 
         <br><br><hr><br>
         <div class="content">
             <h2 class="title">
-                <img src="{{ url_for('static', filename='images/house.png') }}" alt="House Logo" class="logo">
+                <img src="{ { url_for('static', filename='images/house.png') } }" alt="House Logo" class="logo">
                 Flatmates Bill
             </h2>
             
             <br>
-            <p><strong>Period:&nbsp;&nbsp;</strong>{{ bill.period }}</p>
-            <p><strong>Total Amount:&nbsp;&nbsp;</strong>${{ bill.amount }}</p>
+            <p><strong>Period:&nbsp;&nbsp;</strong>{ { bill.period } }</p>
+            <p><strong>Total Amount:&nbsp;&nbsp;</strong>${ { bill.amount } }</p>
             <br>
-            <p>- {{ name1 }}:&nbsp;&nbsp;${{ amount1 }}</p>
-            <p>- {{ name2 }}:&nbsp;&nbsp;${{ amount2 }}</p>
+            <p>- { { name1 } }:&nbsp;&nbsp;${ { amount1 } }</p>
+            <p>- { { name2 } }:&nbsp;&nbsp;${ { amount2 } }</p>
         </div>
     { % endif % } -->
 

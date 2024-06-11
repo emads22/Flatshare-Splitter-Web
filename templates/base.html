@@ -18,15 +18,24 @@
     <!-- Navbar -->
     <nav>
         <ul>
-            <li><a href="{{ url_for('home_page') }}">Home</a></li>
-            <li><a href="{{ url_for('bill_form_page') }}">Bill Form</a></li>
+            <li><a href="{{ url_for('index_view') }}">Home</a></li>
+            <li><a href="{{ url_for('bill_form_view') }}">Bill Form</a></li>
         </ul>
     </nav>
 
     <!-- Main Content -->
     <div class="main-content">
-        {% block content %}
-            
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul class="flash">
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+
+        {% block content %}            
         {% endblock %}
     </div>
 

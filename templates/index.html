@@ -6,11 +6,13 @@
 
 {% block content %}
 
-    <h2>
+    <h1 class="title">
+        <img src="{{ url_for('static', filename='images/house.png') }}" alt="House Logo" class="logo">
         Flatmates Bill
-    </h2>
-    <p>This web app is useful to split a bill between two flatmates. </p>
+    </h1>
     <br>
-    <a href="{{ url_for('bill_form_page') }}">Go to the bill page.</a>
+    <p>Flatmates Bill application is designed to fairly split the utility bill among flatmates based on the number of days they stayed in the house during the billing period.</p>
+    <br>
+    <a href="{{ url_for('bill_form_view') }}">Split a Bill</a>
         
 {% endblock %}
