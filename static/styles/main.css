@@ -116,7 +116,13 @@ footer {
     padding: 10px;
     background-color: #44475a;
     color: #fff;
+    font-weight: bold;
 }
+
+footer:hover{
+    color: #50fa7b;
+}
+
 .flash {
     background-color: #ff5555;
     color: #fff;
@@ -130,6 +136,7 @@ footer {
     color: #fff;
     list-style-type: none;
 }
+
 .title {
     display: flex;
     align-items: center;
@@ -139,8 +146,14 @@ footer {
     margin-right: 10px; /* Adjust margin as needed */
     width: 30px;
 }
+
 .error {
     font-style: italic;
     color: #ff5555;
-    float: right; /* Float to the right */
+    float: right; 
+}
+
+.url {
+    font-style: italic;
+    /* float: right; */ /* Float to the right */
 }

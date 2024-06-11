@@ -63,7 +63,7 @@ class BillForm(FlaskForm):
             DataRequired(message="Name is required."),
             Length(
                 min=1, max=20, message="Name must be between 1 and 20 characters."),
-            Regexp('^[a-zA-Z]+$',
+            Regexp('^ *[a-zA-Z]+ *$',  # 0 or more space char before and after
                    message="Name can only contain letters.")
         ],
         render_kw={"placeholder": "e.g., Alex"}
@@ -86,7 +86,7 @@ class BillForm(FlaskForm):
             DataRequired(message="Name is required."),
             Length(
                 min=1, max=20, message="Name must be between 1 and 20 characters."),
-            Regexp('^[a-zA-Z]+$',
+            Regexp('^ *[a-zA-Z]+ *$',  # 0 or more space char before and after
                    message="Name can only contain letters.")
         ],
         render_kw={"placeholder": "e.g., Michael"}

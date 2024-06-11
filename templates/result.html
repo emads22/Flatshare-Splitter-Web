@@ -18,9 +18,12 @@
         <br>
         <p>- {{ name1 }}:&nbsp;&nbsp;${{ amount1 }}</p>
         <p>- {{ name2 }}:&nbsp;&nbsp;${{ amount2 }}</p>
+        <br>
     </div>
 
-    <br><br><hr><br>
+    <br>
+    <p class="url"><small>You can find the bill <a href="{{ bill_url }}">here</a></small></p>
+    <hr><br>
     <a href="{{ url_for('bill_form_view') }}">Split another bill</a>
 
 {% endblock %}
