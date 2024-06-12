@@ -31,7 +31,7 @@ The application also shares the generated PDF report using the Filestack API. Ho
    ```
 2. **Navigate to the Project Folder:**
    ```sh
-   cd Flatshare-Splitter
+   cd Flatshare-Splitter-Web
    ```
 3. **Ensure Python 3.x is Installed:** Check your Python version using:
    ```sh
@@ -49,11 +49,17 @@ The application also shares the generated PDF report using the Filestack API. Ho
    ```sh
    flask run
    ```
-    or
+   a `.flaskenv` file is created in the root directory of the project, containing the following lines to set up debug and development environment variables:
+   ```sh
+   FLASK_ENV=development
+   FLASK_DEBUG=1
+   ```
+   With these settings, Flask will run in debug mode and development environment, providing detailed error messages and automatically reloading the application when changes are detected.   
 
-    ```sh
-    python app.py
-    ```
+   Alternatively, run the app using:
+   ```sh
+   python app.py
+   ```
 2. **Open the Web Application:**
    Open your web browser and go to http://127.0.0.1:5000.
 3. **Enter Bill Details:**
