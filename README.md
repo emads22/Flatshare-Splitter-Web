@@ -12,6 +12,8 @@
 ## Overview
 Flatshare Splitter Web, initially a Python CLI (Command-Line Interface) application, has been upgraded to a web application using Flask. The web application continues to fairly split the utility bill among flatmates based on the number of days they stayed in the house during the billing period. The application leverages Object-Oriented Programming (OOP) principles to enhance modularity and maintainability, and now offers a user-friendly web interface for a better user experience.
 
+The original CLI version of the application can be found on GitHub at the following link: [Flatshare Splitter](https://github.com/emads22/Flatshare-Splitter).
+
 The application also shares the generated PDF report using the Filestack API. However, users can modify the code to use any other cloud service for file sharing. The PDF bill design is basic and can be customized further depending on user preference and needs.
 
 ## Features
@@ -23,6 +25,16 @@ The application also shares the generated PDF report using the Filestack API. Ho
 - **Error Handling:** Gracefully handle errors during the file-sharing process.
 - **Web Interface:** User-friendly web interface to enter bill details and view results.
 - **Session Management:** Manage user sessions to keep track of bill calculation and report generation.
+
+## Technologies Used
+- **Flask**: Used for creating the web application.
+- **Flask-WTF**: Used for integrating Flask with WTForms.
+- **WTForms**: Used for form handling and validation in Flask applications.
+- **Filestack**: Used for uploading and sharing files via the cloud.
+- **FPDF**: Used for generating PDF documents in Python.
+- **python-dotenv**: Used for loading environment variables from a `.env` file.
+- **webbrowser**: Used for opening URLs in a web browser.
+- **datetime**: Used for manipulating dates and times in Python.
 
 ## Setup
 1. **Clone the Repository:**
