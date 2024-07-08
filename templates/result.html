@@ -6,13 +6,7 @@
 
 {% block content %}
 
-    <div class="content">
-        <h2 class="title">
-            <img src="{{ url_for('static', filename='assets/images/Flatshare_Splitter_logo.png') }}" alt="Flatshare Splitter Logo" class="logo">
-            Flatmates' Bill
-        </h2>
-        
-        <br>
+    <div class="content">       
         <p><strong>Period:&nbsp;&nbsp;</strong>{{ bill.period }}</p>
         <p><strong>Total Amount:&nbsp;&nbsp;</strong>${{ bill.amount }}</p>
         <br>

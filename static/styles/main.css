@@ -140,11 +140,13 @@ footer:hover{
 .title {
     display: flex;
     align-items: center;
+    margin-bottom: 30px;
 }
 
 .logo {
-    margin-right: 10px; /* Adjust margin as needed */
-    width: 30px;
+    margin-right: 20px; /* Adjust margin as needed */
+    width: 60px;
+    height: 60px;
 }
 
 .error {

@@ -6,11 +6,6 @@
 
 {% block content %}
 
-    <h2 class="title">
-        <img src="{{ url_for('static', filename='assets/images/Flatshare_Splitter_logo.png') }}" alt="House Logo" class="logo">
-        Flatshare Splitter
-    </h2>
-    <br>
     <p>Flatshare Splitter application is designed to fairly split the utility bill among flatmates based on the number of days they stayed in the house during the billing period.</p>
     <br>
     <a href="{{ url_for('bill_form_view') }}">Distribute Bill Costs</a>
