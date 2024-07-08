@@ -9,7 +9,7 @@ load_dotenv()
 ASSETS = Path(__file__).parent / "assets"
 BILLS = ASSETS / "pdf_bills"
 IMAGES = ASSETS / "images"
-BILL_LOGO = IMAGES / "house.png"
+BILL_LOGO = IMAGES / "Flatshare_Splitter_logo.png"
 
 FILESTACK_API_KEY = os.getenv('FILESTACK_API_KEY')
 
