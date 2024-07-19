@@ -5,7 +5,7 @@
 ## Overview
 Flatshare Splitter Web, initially a Python CLI (Command-Line Interface) application, has been upgraded to a web application using Flask. The web application continues to fairly split the utility bill among flatmates based on the number of days they stayed in the house during the billing period. The application leverages Object-Oriented Programming (OOP) principles to enhance modularity and maintainability, and now offers a user-friendly web interface for a better user experience.
 
-The original CLI version of the application can be found on GitHub at the following link: [Flatshare Splitter](https://github.com/emads22/Flatshare-Splitter).
+The original CLI version of the application can be found on GitHub at the following link: [Flatshare Splitter](https://github.com/emads22/Flatshare-Splitter/blob/main/README.md).
 
 The application also shares the generated PDF report using the Filestack API. However, users can modify the code to use any other cloud service for file sharing. The PDF bill design is basic and can be customized further depending on user preference and needs.
 
